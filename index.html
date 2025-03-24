@@ -82,7 +82,7 @@
   if (liff.isLoggedIn()) {
     liff.sendMessages([
       { type: 'text', text: message },
-      { type: 'text', text: '質問フォームからの送信です。' }
+      { type: 'text', text: '質問内容を受け付けました。' }
     ])
     .then(() => {
       alert('送信しました');
