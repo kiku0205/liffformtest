@@ -72,25 +72,28 @@
     }
 
     document.getElementById('question-form').onsubmit = function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const contact = document.getElementById('contact').value;
-      const question = document.getElementById('question').value;
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const contact = document.getElementById('contact').value;
+  const question = document.getElementById('question').value;
 
-      const message = `【質問フォーム】\n名前: ${name}\n連絡先: ${contact}\n質問内容: ${question}`;
+  const message = `【質問フォーム】\n名前: ${name}\n連絡先: ${contact}\n質問内容: ${question}`;
 
-      if (liff.isLoggedIn()) {
-        liff.sendMessages([{ type: 'text', text: message }])
-          .then(() => {
-            alert('送信しました');
-            liff.closeWindow();
-          })
-          .catch(err => alert('送信失敗: ' + err));
-      } else {
-        alert('LINEにログインしてください');
-        liff.login();
-      }
-    }
+  if (liff.isLoggedIn()) {
+    liff.sendMessages([
+      { type: 'text', text: message },
+      { type: 'text', text: '質問フォームからの送信です。' }
+    ])
+    .then(() => {
+      alert('送信しました');
+      liff.closeWindow();
+    })
+    .catch(err => alert('送信失敗: ' + err));
+  } else {
+    alert('LINEにログインしてください');
+    liff.login();
+  }
+}
   </script>
 </body>
 </html>
